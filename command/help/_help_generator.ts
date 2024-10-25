@@ -38,6 +38,8 @@ interface OptionGroup {
 export class HelpGenerator {
   private indent = 2;
   private options: Required<HelpOptions>;
+  private width: integer;
+  private chunkWidth: integer;
 
   /** Generate help text for given command. */
   public static generate(cmd: Command, options?: HelpOptions): string {
@@ -48,6 +50,8 @@ export class HelpGenerator {
     private cmd: Command,
     options: HelpOptions = {},
   ) {
+    this.width = Deno.consoleSize()?.columns || 140;
+    this.chunkWidth = Math.floor(this.width / 14);
     this.options = {
       types: false,
       hints: true,
@@ -123,7 +127,7 @@ export class HelpGenerator {
         [dedent(this.cmd.getDescription())],
       ])
         .indent(this.indent)
-        .maxColWidth(Deno.consoleSize()?.columns || 140)
+        .maxColWidth(this.width)
         .padding(1)
         .toString() +
       "\n";
@@ -188,7 +192,13 @@ export class HelpGenerator {
         ])
           .padding([2, 2, 1, 2])
           .indent(this.indent)
-          .maxColWidth([60, 60, 1, 80, 60])
+          .maxColWidth([
+            3 * this.chunkWidth,
+            3 * this.chunkWidth,
+            1,
+            4 * this.chunkWidth,
+            3 * this.chunkWidth,
+          ])
           .toString() +
         "\n";
     }
@@ -203,7 +213,12 @@ export class HelpGenerator {
         ]),
       ])
         .indent(this.indent)
-        .maxColWidth([60, 1, 80, 60])
+        .maxColWidth([
+          3 * this.chunkWidth,
+          3 * this.chunkWidth,
+          1,
+          4 * this.chunkWidth,
+        ])
         .padding([2, 1, 2])
         .toString() +
       "\n";
@@ -235,7 +250,12 @@ export class HelpGenerator {
           ]),
         ])
           .indent(this.indent)
-          .maxColWidth([60, 60, 1, 80])
+          .maxColWidth([
+            3 * this.chunkWidth,
+            3 * this.chunkWidth,
+            1,
+            4 * this.chunkWidth,
+          ])
           .padding([2, 2, 1, 2])
           .toString() +
         "\n";
@@ -252,7 +272,7 @@ export class HelpGenerator {
           command.getShortDescription(),
         ]),
       ])
-        .maxColWidth([60, 1, 80])
+        .maxColWidth([3 * this.chunkWidth, 1, 4 * this.chunkWidth])
         .padding([2, 1, 2])
         .indent(this.indent)
         .toString() +
@@ -281,7 +301,13 @@ export class HelpGenerator {
       ])
         .padding([2, 2, 1, 2])
         .indent(this.indent)
-        .maxColWidth([60, 60, 1, 80, 10])
+        .maxColWidth([
+          3 * this.chunkWidth,
+          3 * this.chunkWidth,
+          1,
+          4 * this.chunkWidth,
+          this.chunkWidth,
+        ])
         .toString() +
       "\n";
   }
@@ -298,7 +324,7 @@ export class HelpGenerator {
       ]))
         .padding(1)
         .indent(this.indent)
-        .maxColWidth(150)
+        .maxColWidth(this.width)
         .toString() +
       "\n";
   }
