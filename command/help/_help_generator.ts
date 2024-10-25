@@ -50,7 +50,7 @@ export class HelpGenerator {
     private cmd: Command,
     options: HelpOptions = {},
   ) {
-    this.width = Math.min(Deno.consoleSize()?.columns - 1, 150);
+    this.width = Math.min(Deno.consoleSize()?.columns, 150);
     this.chunkWidth = Math.floor(this.width / 10);
     this.options = {
       types: false,
@@ -127,7 +127,7 @@ export class HelpGenerator {
         [dedent(this.cmd.getDescription())],
       ])
         .indent(this.indent)
-        .maxColWidth(this.width)
+        .maxTableWidth(this.width - this.indent)
         .padding(1)
         .toString() +
       "\n";
@@ -192,7 +192,7 @@ export class HelpGenerator {
         ])
           .padding([2, 2, 1, 2])
           .indent(this.indent)
-          .maxTableWidth(this.width)
+          .maxTableWidth(this.width - this.indent)
           .colRigidity([1, 1, 1, 0, 0])
           .maxColWidth([
             3 * this.chunkWidth,
@@ -215,7 +215,7 @@ export class HelpGenerator {
         ]),
       ])
         .indent(this.indent)
-        .maxTableWidth(this.width)
+        .maxTableWidth(this.width - this.indent)
         .colRigidity([1, 1, 1, 0])
         .maxColWidth([
           3 * this.chunkWidth,
@@ -254,7 +254,7 @@ export class HelpGenerator {
           ]),
         ])
           .indent(this.indent)
-          .maxTableWidth(this.width)
+          .maxTableWidth(this.width - this.indent)
           .colRigidity([1, 1, 1, 0])
           .maxColWidth([
             3 * this.chunkWidth,
@@ -278,7 +278,7 @@ export class HelpGenerator {
           command.getShortDescription(),
         ]),
       ])
-        .maxTableWidth(this.width)
+        .maxTableWidth(this.width - this.indent)
         .colRigidity([1, 1, 0])
         .maxColWidth([3 * this.chunkWidth, 1, 4 * this.chunkWidth])
         .padding([2, 1, 2])
@@ -309,7 +309,7 @@ export class HelpGenerator {
       ])
         .padding([2, 2, 1, 2])
         .indent(this.indent)
-        .maxTableWidth(this.width)
+        .maxTableWidth(this.width - this.indent)
         .colRigidity([1, 1, 1, 0, 0])
         .maxColWidth([
           3 * this.chunkWidth,
@@ -334,7 +334,7 @@ export class HelpGenerator {
       ]))
         .padding(1)
         .indent(this.indent)
-        .maxColWidth(this.width)
+        .maxTableWidth(this.width - this.indent)
         .toString() +
       "\n";
   }
