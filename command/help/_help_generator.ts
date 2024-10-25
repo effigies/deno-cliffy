@@ -38,8 +38,8 @@ interface OptionGroup {
 export class HelpGenerator {
   private indent = 2;
   private options: Required<HelpOptions>;
-  private width: integer;
-  private chunkWidth: integer;
+  private width: number;
+  private chunkWidth: number;
 
   /** Generate help text for given command. */
   public static generate(cmd: Command, options?: HelpOptions): string {
