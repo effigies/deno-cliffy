@@ -91,7 +91,7 @@ export class TableLayout {
     /* Try to get the total table width within a maximum */
     const totalWidth = width.reduce((a, b) => a + b);
     const maxAllowable = this.options.maxTableWidth -
-      padding.reduce((a, b) => a + b);
+      padding.filter((x) => x).reduce((a, b) => a + b);
     console.log(`width: ${width}`);
     console.log(`padding: ${padding}`);
     console.log(`maxTableWidth: ${this.options.maxTableWidth}`);
