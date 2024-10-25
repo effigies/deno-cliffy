@@ -127,7 +127,8 @@ export class HelpGenerator {
         [dedent(this.cmd.getDescription())],
       ])
         .indent(this.indent)
-        .maxTableWidth(this.width - this.indent)
+        .maxColWidth(this.width - this.indent)
+        .colRigidity(0)
         .padding(1)
         .toString() +
       "\n";
