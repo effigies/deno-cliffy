@@ -92,6 +92,10 @@ export class TableLayout {
     const totalWidth = width.reduce((a, b) => a + b);
     const maxAllowable = this.options.maxTableWidth -
       padding.reduce((a, b) => a + b);
+    console.log(`width: ${width}`);
+    console.log(`padding: ${padding}`);
+    console.log(`maxTableWidth: ${this.options.maxTableWidth}`);
+    console.log(`maxAllowable: ${maxAllowable}`);
     if (totalWidth > maxAllowable && this.options.colRigidity != 1) {
       const rigidity = width.map(
         (w, i) => (
@@ -103,12 +107,17 @@ export class TableLayout {
       const rigidTotal = width.map((w, i) => rigidity[i] >= 1 ? w : 0).reduce(
         (a, b) => a + b,
       );
+
+      console.log(`rigidTotal: ${rigidTotal}`);
       const slack = maxAllowable - rigidTotal;
+      console.log(`slack: ${slack}`);
       if (slack > 0) {
         const flexTotal = width.map((w, i) => rigidity[i] < 1 ? w : 0).reduce(
           (a, b) => a + b,
         );
         const flexFactor = slack / flexTotal;
+        console.log(`flexTotal: ${flexTotal}`);
+        console.log(`flexFactor: ${flexFactor}`);
         for (let colIndex = 0; colIndex < width.length; colIndex++) {
           if (rigidity[colIndex] < 1) {
             const column = this.options.columns.at(colIndex);
@@ -127,6 +136,7 @@ export class TableLayout {
             );
           }
         }
+        console.log(`width: ${width}`);
       }
     }
 
