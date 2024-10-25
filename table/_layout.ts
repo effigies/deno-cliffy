@@ -111,6 +111,7 @@ export class TableLayout {
         const flexFactor = slack / flexTotal;
         for (let colIndex = 0; colIndex < width.length; colIndex++) {
           if (rigidity[colIndex] < 1) {
+            const column = this.options.columns.at(colIndex);
             const minColWidth: number = column?.getMinWidth() ??
               (Array.isArray(this.options.minColWidth)
                 ? this.options.minColWidth[colIndex]

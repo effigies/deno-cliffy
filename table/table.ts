@@ -234,7 +234,7 @@ export class Table<TRow extends RowType = RowType> extends Array<TRow> {
    * @param width     Max table width.
    * @param override  Override existing value.
    */
-  public maxTableWidth(width: number | Array<number>, override = true): this {
+  public maxTableWidth(width: number, override = true): this {
     if (override || typeof this.options.maxTableWidth === "undefined") {
       this.options.maxTableWidth = width;
     }
