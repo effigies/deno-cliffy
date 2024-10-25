@@ -1,6 +1,6 @@
 {
   "name": "@effigies/cliffy-command",
-  "version": "1.0.0-dev.2",
+  "version": "1.0.0-dev.3",
   "exports": {
     ".": "./mod.ts",
     "./completions": "./completions/mod.ts",
