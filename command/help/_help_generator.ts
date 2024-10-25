@@ -51,7 +51,7 @@ export class HelpGenerator {
     options: HelpOptions = {},
   ) {
     this.width = Math.min(Deno.consoleSize()?.columns, 150);
-    this.chunkWidth = Math.floor(this.width / 15);
+    this.chunkWidth = Math.floor(this.width / 10);
     this.options = {
       types: false,
       hints: true,
@@ -192,6 +192,8 @@ export class HelpGenerator {
         ])
           .padding([2, 2, 1, 2])
           .indent(this.indent)
+          .maxTableWidth(this.width)
+          .colRigidity([1, 1, 1, 0, 0])
           .maxColWidth([
             3 * this.chunkWidth,
             2 * this.chunkWidth,
@@ -213,6 +215,8 @@ export class HelpGenerator {
         ]),
       ])
         .indent(this.indent)
+        .maxTableWidth(this.width)
+        .colRigidity([1, 1, 1, 0])
         .maxColWidth([
           3 * this.chunkWidth,
           2 * this.chunkWidth,
@@ -250,6 +254,8 @@ export class HelpGenerator {
           ]),
         ])
           .indent(this.indent)
+          .maxTableWidth(this.width)
+          .colRigidity([1, 1, 1, 0])
           .maxColWidth([
             3 * this.chunkWidth,
             2 * this.chunkWidth,
@@ -272,6 +278,8 @@ export class HelpGenerator {
           command.getShortDescription(),
         ]),
       ])
+        .maxTableWidth(this.width)
+        .colRigidity([1, 1, 0])
         .maxColWidth([3 * this.chunkWidth, 1, 4 * this.chunkWidth])
         .padding([2, 1, 2])
         .indent(this.indent)
@@ -301,6 +309,8 @@ export class HelpGenerator {
       ])
         .padding([2, 2, 1, 2])
         .indent(this.indent)
+        .maxTableWidth(this.width)
+        .colRigidity([1, 1, 1, 0, 0])
         .maxColWidth([
           3 * this.chunkWidth,
           2 * this.chunkWidth,
