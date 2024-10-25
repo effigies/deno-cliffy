@@ -50,7 +50,7 @@ export class HelpGenerator {
     private cmd: Command,
     options: HelpOptions = {},
   ) {
-    this.width = Math.min(Deno.consoleSize()?.columns, 150);
+    this.width = Math.min(Deno.consoleSize()?.columns - 1, 150);
     this.chunkWidth = Math.floor(this.width / 10);
     this.options = {
       types: false,
