@@ -123,7 +123,7 @@ export class HelpGenerator {
         [dedent(this.cmd.getDescription())],
       ])
         .indent(this.indent)
-        .maxColWidth(140)
+        .maxColWidth(Deno.consoleSize()?.columns || 140)
         .padding(1)
         .toString() +
       "\n";
