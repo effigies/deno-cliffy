@@ -1,4 +1,4 @@
-import { Table } from "@cliffy/table";
+import { Table } from "@effigies/cliffy-table";
 import {
   bold,
   brightBlue,
